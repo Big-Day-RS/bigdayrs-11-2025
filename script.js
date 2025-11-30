@@ -1,63 +1,91 @@
 // Versão do cache - atualize este número quando modificar os dados
-const CACHE_VERSION = "1.0.0";
+const CACHE_VERSION = "1.0.1";
 
 // Texto de atualização - modifique aqui
-const UPDATE_TEXT = "29 de novembro de 2025, 13:29<br><br> O Big Day RS é um evento independente inspirado no eBird (Big Day), com objetivo de observar aves gaúchas, fortalecer a ciência cidadã e a conexão com a natureza.";
+const UPDATE_TEXT = "30 de novembro de 2025, 09:28<br><br> O Big Day RS é um evento independente inspirado no eBird (Big Day), com objetivo de observar aves gaúchas, fortalecer a ciência cidadã e a conexão com a natureza.";
 
 // Dados centralizados - apenas aqui!
 const RANKING_DATA = {
   // Observadores - Espécies
   observadores_species: [
-  { nome: "Raphael Kurz - Aves do Sul", quantidade: 58},
-{ nome: "Guillermo Andreo", quantidade: 79},
-{ nome: "Ines Vasconcelos", quantidade: 16},
-{ nome: "Demétrius Lima", quantidade: 12},
-{ nome: "Gustavo Henrique Lambert", quantidade: 18},
-{ nome: "Márcia Rodrigues", quantidade: 26},
-{ nome: "Letícia Matheus Baccarin", quantidade: 18},
+  { nome: "Guillermo Andreo", quantidade: 79},
+{ nome: "Andrei Langeloh Roos", quantidade: 66},
+{ nome: "Cassiana Aguiar", quantidade: 66},
 { nome: "Filipe Bernardi", quantidade: 66},
-{ nome: "Andrei Langeloh Roos", quantidade: 66}
+{ nome: "Lucilene Jacoboski", quantidade: 66},
+{ nome: "Ines Vasconcelos", quantidade: 54},
+{ nome: "Gustavo Henrique Lambert", quantidade: 51},
+{ nome: "Eduarda Thaís dos Santos", quantidade: 51},
+{ nome: "Rodrigo Santos", quantidade: 8},
+{ nome: "Raphael Kurz - Aves do Sul", quantidade: 111},
+{ nome: "Márcia Rodrigues", quantidade: 26},
+{ nome: "Luis Weymar Junior", quantidade: 101},
+{ nome: "Demétrius Lima", quantidade: 14},
+{ nome: "Vera Medeiros", quantidade: 45},
+{ nome: "Letícia Matheus Baccarin", quantidade: 27},
+{ nome: "Marisa Costa", quantidade: 24},
+{ nome: "Rafael Silveira Lopes", quantidade: 42},
+{ nome: "Vitor Eduardo Frota Vasconcelos", quantidade: 70}
   ],
   
   // Observadores - Listas
   observadores_lists: [
-  { nome: "Raphael Kurz - Aves do Sul", quantidade: 6},
-{ nome: "Guillermo Andreo", quantidade: 3},
-{ nome: "Ines Vasconcelos", quantidade: 1},
-{ nome: "Demétrius Lima", quantidade: 3},
-{ nome: "Gustavo Henrique Lambert", quantidade: 1},
-{ nome: "Márcia Rodrigues", quantidade: 1},
-{ nome: "Letícia Matheus Baccarin", quantidade: 1},
+  { nome: "Guillermo Andreo", quantidade: 2},
+{ nome: "Andrei Langeloh Roos", quantidade: 5},
+{ nome: "Cassiana Aguiar", quantidade: 5},
 { nome: "Filipe Bernardi", quantidade: 5},
-{ nome: "Andrei Langeloh Roos", quantidade: 5}
+{ nome: "Lucilene Jacoboski", quantidade: 5},
+{ nome: "Ines Vasconcelos", quantidade: 6},
+{ nome: "Gustavo Henrique Lambert", quantidade: 6},
+{ nome: "Eduarda Thaís dos Santos", quantidade: 6},
+{ nome: "Rodrigo Santos", quantidade: 1},
+{ nome: "Raphael Kurz - Aves do Sul", quantidade: 12},
+{ nome: "Márcia Rodrigues", quantidade: 1},
+{ nome: "Luis Weymar Junior", quantidade: 2},
+{ nome: "Demétrius Lima", quantidade: 4},
+{ nome: "Vera Medeiros", quantidade: 6},
+{ nome: "Letícia Matheus Baccarin", quantidade: 2},
+{ nome: "Marisa Costa", quantidade: 2},
+{ nome: "Rafael Silveira Lopes", quantidade: 5},
+{ nome: "Vitor Eduardo Frota Vasconcelos", quantidade: 1}
   ],
   
   // Municípios - Espécies
   municipios_species: [
-  { nome: "Pelotas", quantidade: 8},
-{ nome: "Rio Grande", quantidade: 56},
-{ nome: "Canoas", quantidade: 59},
-{ nome: "Porto Alegre", quantidade: 50},
-{ nome: "Alvorada", quantidade: 12},
+  { nome: "Canoas", quantidade: 60},
+{ nome: "Caxias do Sul", quantidade: 91},
+{ nome: "Porto Alegre", quantidade: 65},
 { nome: "Hulha Negra", quantidade: 18},
+{ nome: "Lajeado", quantidade: 8},
+{ nome: "Pelotas", quantidade: 19},
+{ nome: "Rio Grande", quantidade: 110},
 { nome: "Santo Ângelo", quantidade: 26},
-{ nome: "Jaquirana", quantidade: 18},
+{ nome: "Alvorada", quantidade: 14},
 { nome: "São Marcos", quantidade: 19},
-{ nome: "Caxias do Sul", quantidade: 62}
+{ nome: "Torres", quantidade: 27},
+{ nome: "Tramandaí", quantidade: 24},
+{ nome: "Capão do Leão", quantidade: 99},
+{ nome: "Aceguá", quantidade: 42},
+{ nome: "Eldorado do Sul", quantidade: 70}
   ],
   
   // Municípios - Listas
   municipios_lists: [
-  { nome: "Pelotas", quantidade: 1},
-{ nome: "Rio Grande", quantidade: 5},
-{ nome: "Canoas", quantidade: 1},
-{ nome: "Porto Alegre", quantidade: 3},
-{ nome: "Alvorada", quantidade: 3},
+  { nome: "Canoas", quantidade: 1},
+{ nome: "Caxias do Sul", quantidade: 10},
+{ nome: "Porto Alegre", quantidade: 7},
 { nome: "Hulha Negra", quantidade: 1},
+{ nome: "Lajeado", quantidade: 1},
+{ nome: "Pelotas", quantidade: 2},
+{ nome: "Rio Grande", quantidade: 11},
 { nome: "Santo Ângelo", quantidade: 1},
-{ nome: "Jaquirana", quantidade: 1},
+{ nome: "Alvorada", quantidade: 4},
 { nome: "São Marcos", quantidade: 1},
-{ nome: "Caxias do Sul", quantidade: 4}
+{ nome: "Torres", quantidade: 2},
+{ nome: "Tramandaí", quantidade: 2},
+{ nome: "Capão do Leão", quantidade: 1},
+{ nome: "Aceguá", quantidade: 5},
+{ nome: "Eldorado do Sul", quantidade: 1}
   ]
 };
 
@@ -175,6 +203,7 @@ function init(){
 
 // Run
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
