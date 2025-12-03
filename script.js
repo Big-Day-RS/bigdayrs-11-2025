@@ -171,7 +171,7 @@ function setupMoreButton(containerId, type, total){
 function setupUpdateFooter() {
   const footer = document.createElement('div');
   footer.className = 'update-footer';
-  footer.innerHTML = `<p>Dados atualizados até: <strong>${UPDATE_TEXT}</strong></p>`;
+  footer.innerHTML = `<p>Dados capturados em: <strong>${UPDATE_TEXT}</strong></p>`;
   document.body.appendChild(footer);
 }
 
@@ -223,6 +223,7 @@ function init(){
 
 // Run
 document.addEventListener("DOMContentLoaded", init);
+
 
 
 
