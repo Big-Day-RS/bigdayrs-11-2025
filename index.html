@@ -8,6 +8,16 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <!-- Overlay de bloqueio (será mostrado enquanto bloqueado) -->
+  <div id="blockOverlay" style="display: none;">
+    <div class="block-message">
+      <h2>⏳ Aguardando Dados</h2>
+      <p>Os rankings estão sendo atualizados com os dados do evento. Em breve será possível ver o resultado final</p>
+      <!--<p><small>Para visualizar, digite a senha no console:</small></p>
+      <code style="background: #f7fafc; padding: 4px 8px; border-radius: 4px;">unlockPage('bigday123')</code>-->
+    </div>
+  </div>
+  
   <main class="container">
     <header class="header">
       <!-- Logo PNG com fundo transparente -->
@@ -86,10 +96,107 @@
       </article>
     </section>
   </main>
-
+<script>
+    // CONFIGURAÇÃO DA SENHA
+    const PAGE_PASSWORD = 'bigdayrs2025'; // Altere esta senha!
+    
+    // Elementos da página
+    const blockOverlay = document.getElementById('blockOverlay');
+    const mainContent = document.getElementById('mainContent');
+    
+    // Verifica se já está desbloqueado (salvo no localStorage)
+    function checkUnlockStatus() {
+      const isUnlocked = localStorage.getItem('bigdayUnlocked') === 'true';
+      const unlockTime = localStorage.getItem('bigdayUnlockTime');
+      
+      // Se está desbloqueado e foi há menos de 24 horas, mantém desbloqueado
+      if (isUnlocked && unlockTime) {
+        const timeDiff = Date.now() - parseInt(unlockTime);
+        if (timeDiff < 24 * 60 * 60 * 1000) { // 24 horas
+          showContent();
+          console.log('✅ Página já desbloqueada anteriormente');
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    // Mostra mensagem de bloqueio
+    function showBlockMessage() {
+      blockOverlay.style.display = 'flex';
+      mainContent.style.display = 'none';
+      
+      // Estilos para o overlay
+      blockOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f7fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        font-family: system-ui, -apple-system, sans-serif;
+      `;
+      
+      // Estilos para a mensagem
+      const messageDiv = blockOverlay.querySelector('.block-message');
+      messageDiv.style.cssText = `
+        text-align: center;
+        max-width: 500px;
+        padding: 40px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      `;
+      
+      console.log('🔒 Página bloqueada para visualização pública');
+      console.log('💡 Para desbloquear, execute no console: unlockPage(\'bigday123\')');
+    }
+    
+    // Mostra o conteúdo principal
+    function showContent() {
+      blockOverlay.style.display = 'none';
+      mainContent.style.display = 'block';
+    }
+    
+    // Função para desbloquear a página (chamar do console)
+    window.unlockPage = function(password) {
+      if (password === PAGE_PASSWORD) {
+        localStorage.setItem('bigdayUnlocked', 'true');
+        localStorage.setItem('bigdayUnlockTime', Date.now().toString());
+        showContent();
+        console.log('✅ Página desbloqueada com sucesso!');
+        console.log('🔄 Atualize a página para ver os rankings.');
+        return true;
+      } else {
+        console.log('❌ Senha incorreta!');
+        console.log('💡 Use: unlockPage(\'bigday123\')');
+        return false;
+      }
+    };
+    
+    // Função para bloquear novamente (para testes)
+    window.lockPage = function() {
+      localStorage.removeItem('bigdayUnlocked');
+      localStorage.removeItem('bigdayUnlockTime');
+      showBlockMessage();
+      console.log('🔒 Página bloqueada novamente');
+    };
+    
+    // Inicialização
+    if (!checkUnlockStatus()) {
+      showBlockMessage();
+    } else {
+      showContent();
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
