@@ -53,99 +53,100 @@
   </main>
 
   <script>
-    // Função para processar CSV
-    function parseCSV(csvText) {
-      const lines = csvText.split('\n').filter(line => line.trim() !== '');
-      const headers = lines[0].split(';').map(header => header.trim());
-      
-      const data = [];
-      for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(';').map(value => value.trim());
-        const item = {};
-        headers.forEach((header, index) => {
-          item[header] = values[index] || '';
-        });
-        data.push(item);
-      }
-      return data;
-    }
-
-    // Função para renderizar a tabela
-    function renderSpeciesTable(data) {
-      const tbody = document.querySelector('#species-table tbody');
-      tbody.innerHTML = '';
-      
-      data.forEach(species => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${species.observacoes}</td>
-          <td>${species.nome_popular}</td>
-          <td><em>${species.nome_cientifico}</em></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    // Função para buscar dados de atualização do script principal
-    function loadUpdateDate() {
-      // Tenta buscar do script.js principal
-      if (typeof getUpdateText === 'function') {
-        document.getElementById('update-date').textContent = getUpdateText();
-      } else {
-        // Fallback - você pode definir uma data manualmente aqui
-        document.getElementById('update-date').textContent = '31 de dezembro de 2024, 23:59';
-      }
-    }
-
-    // Função para carregar dados de arquivo CSV externo
-    async function loadCSVFromFile() {
-      try {
-        // Tenta carregar do caminho raiz primeiro (GitHub Pages)
-        const response = await fetch('/especies.csv');
-        if (response.ok) {
-          const csvText = await response.text();
-          return parseCSV(csvText);
+      // Função para processar CSV
+      function parseCSV(csvText) {
+        const lines = csvText.split('\n').filter(line => line.trim() !== '');
+        const headers = lines[0].split(';').map(header => header.trim());
+        
+        const data = [];
+        for (let i = 1; i < lines.length; i++) {
+          const values = lines[i].split(';').map(value => value.trim());
+          const item = {};
+          headers.forEach((header, index) => {
+            item[header] = values[index] || '';
+          });
+          data.push(item);
         }
-      } catch (error) {
-        console.log('Tentando caminho relativo...');
+        return data;
       }
-      
-      try {
-        // Fallback: caminho relativo (desenvolvimento local)
-        const response = await fetch('especies.csv');
-        if (response.ok) {
-          const csvText = await response.text();
-          return parseCSV(csvText);
-        }
-      } catch (error) {
-        console.error('Erro ao carregar especies.csv:', error);
-      }
-      
-      // Retorna array vazio se não encontrar o arquivo
-      return [];
-    }
-
-    // Inicialização
-    async function init() {
-      const speciesData = await loadCSVFromFile();
-      
-      if (speciesData.length === 0) {
-        // Mostra mensagem de erro se não encontrar CSV
+  
+      // Função para renderizar a tabela e atualizar contador
+      function renderSpeciesTable(data) {
         const tbody = document.querySelector('#species-table tbody');
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="3" style="text-align: center; padding: 20px; color: #718096;">
-              Arquivo especies.csv não encontrado. 
-              Por favor, verifique se o arquivo está na pasta correta.
-            </td>
-          </tr>
-        `;
-      } else {
-        renderSpeciesTable(speciesData);
+        tbody.innerHTML = '';
+        
+        data.forEach(species => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${species.observacoes}</td>
+            <td>${species.nome_popular}</td>
+            <td><em>${species.nome_cientifico}</em></td>
+          `;
+          tbody.appendChild(tr);
+        });
+        
+        // Atualiza o contador
+        document.getElementById('species-count').textContent = data.length;
       }
-      
-      loadUpdateDate();
-    }
+  
+      // Função para buscar dados de atualização do script principal
+      function loadUpdateDate() {
+        if (typeof getUpdateText === 'function') {
+          document.getElementById('update-date').textContent = getUpdateText();
+        } else {
+          document.getElementById('update-date').textContent = '31 de dezembro de 2024, 23:59';
+        }
+      }
+  
+      // Função para carregar dados de arquivo CSV externo
+      async function loadCSVFromFile() {
+        try {
+          const response = await fetch('/especies.csv');
+          if (response.ok) {
+            const csvText = await response.text();
+            return parseCSV(csvText);
+          }
+        } catch (error) {
+          console.log('Tentando caminho relativo...');
+        }
+        
+        try {
+          const response = await fetch('especies.csv');
+          if (response.ok) {
+            const csvText = await response.text();
+            return parseCSV(csvText);
+          }
+        } catch (error) {
+          console.error('Erro ao carregar especies.csv:', error);
+        }
+        
+        return [];
+      }
+  
+      // Inicialização
+      async function init() {
+        const speciesData = await loadCSVFromFile();
+        
+        if (speciesData.length === 0) {
+          const tbody = document.querySelector('#species-table tbody');
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="3" style="text-align: center; padding: 20px; color: #718096;">
+                Arquivo especies.csv não encontrado. 
+                Por favor, verifique se o arquivo está na pasta correta.
+              </td>
+            </tr>
+          `;
+          // Mantém o contador como 0
+        } else {
+          renderSpeciesTable(speciesData);
+        }
+        
+        loadUpdateDate();
+      }
+  
+      document.addEventListener('DOMContentLoaded', init);
+  </script>
 
     document.addEventListener('DOMContentLoaded', init);
   </script>
