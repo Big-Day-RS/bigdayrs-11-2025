@@ -136,3 +136,52 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
 .event-totals strong {
   font-weight: 600;
 }
+
+/* Links para outras páginas */
+.page-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.page-link {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border: 1px solid #3182ce;
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.page-link:hover {
+  background: #3182ce;
+  color: white;
+}
+
+.page-link:first-child {
+  border-color: #38a169;
+  color: #38a169;
+}
+
+.page-link:first-child:hover {
+  background: #38a169;
+  color: white;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 720px) {
+  .page-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .page-link {
+    width: 200px;
+    text-align: center;
+  }
+}
