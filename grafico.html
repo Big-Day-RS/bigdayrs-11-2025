@@ -57,16 +57,7 @@
   <script src="script.js"></script>
   
   <script>
-    // Função para buscar dados de atualização do script principal
-    function loadUpdateDate() {
-      if (typeof getUpdateText === 'function') {
-        document.getElementById('update-date').textContent = getUpdateText();
-      } else {
-        document.getElementById('update-date').textContent = '31 de dezembro de 2024, 23:59';
-      }
-    }
 
-    document.addEventListener('DOMContentLoaded', loadUpdateDate);
   </script>
 </body>
 </html>
