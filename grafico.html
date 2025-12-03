@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gráficos - Big Day</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    .container { max-width: 900px; margin: 24px auto; padding: 16px; }
+    .back { margin-bottom: 12px; display:inline-block; text-decoration:none; color:#2b6cb0; font-weight:600; }
+    .chart-header { text-align: center; margin-bottom: 20px; }
+    .chart-container { 
+      background: white; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0 6px 18px rgba(20,20,40,0.06);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="index.html">← Voltar ao Ranking</a>
+
+    <header class="header">
+      <!-- Logo PNG com fundo transparente -->
+      <div class="logo" id="logo">
+        <img src="logo.png" alt="Big Day Logo" class="logo-image">
+      </div>
+      <h1 class="event-title">1º Big Day RS -- Resultado Preliminar</h1>
+      
+      <!-- Links para outras páginas -->
+      <div class="page-links">
+        <a href="especies.html" class="page-link">📋 Lista de espécies</a>
+        <a href="grafico.html" class="page-link">📊 Gráfico</a>
+      </div>
+      
+      <!-- Totais do evento -->
+      <div class="event-totals">
+        <strong id="total-text">XXXX espécies - XXXX listas</strong>
+      </div>
+    </header>
+    <header class="chart-header">
+      <a class="back" href="index.html">← Voltar ao Ranking</a>
+      <h1>1º Big Day RS - Gráfico</h1>      
+    </header>
+
+    <div class="chart-container">
+      
+      <h2>Gráficos em Desenvolvimento</h2>
+      <p>Esta página será atualizada em breve com gráficos interativos.</p>
+      <p>Planejado para incluir:</p>
+      <ul>
+        <li>Gráfico de barras - Top 10 observadores</li>
+        <li>Gráfico de pizza - Distribuição por município</li>
+        <li>Gráfico temporal - Evolução durante o dia</li>
+      </ul>
+    </div>
+
+    <div class="update-footer">
+      <p>Dados atualizados até: <strong id="update-date">Carregando...</strong></p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  
+  <script>
+    // Função para buscar dados de atualização do script principal
+    function loadUpdateDate() {
+      if (typeof getUpdateText === 'function') {
+        document.getElementById('update-date').textContent = getUpdateText();
+      } else {
+        document.getElementById('update-date').textContent = '31 de dezembro de 2024, 23:59';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadUpdateDate);
+  </script>
+</body>
+</html>
